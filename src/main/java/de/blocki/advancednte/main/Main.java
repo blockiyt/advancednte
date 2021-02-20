@@ -15,7 +15,8 @@ public final class Main extends JavaPlugin {
     //Sets the Plugin Variable Public
     public static LuckPerms lpApi;
     //sets the prefix
-    public static String prefix;
+    private static String local_prefix;
+    public static String prefix = local_prefix + " ";
 
     @Override
     public void onEnable() {
@@ -66,6 +67,6 @@ public final class Main extends JavaPlugin {
         if(ConfigManager.get("ChatLayout") == null){ ConfigManager.set("ChatLayout", "%PREFIX%%PLAYERNAME%%SUFFIX% §7:§r %MESSAGE%"); }
         if(ConfigManager.get("DisplayNameLayout") == null){ ConfigManager.set("DisplayNameLayout", "%PREFIX%%PLAYERNAME%%SUFFIX%");}
         if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6LP-NTE§7]"); }
-        prefix = ConfigManager.get("MessagePrefix");
+        local_prefix = ConfigManager.get("MessagePrefix");
     }
 }
