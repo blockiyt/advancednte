@@ -58,19 +58,19 @@ public class PlayerNodeChangeListener {
 
             if (node instanceof InheritanceNode) {
                 String groupName = ((InheritanceNode) node).getGroupName();
-                player.sendMessage(ConfigManager.get("MessageGroupAdd").replace("%GROUPNAME%", groupName));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessageGroupAdd").replace("%GROUPNAME%", groupName));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
                 TagManager.setTag(player, prefix, suffix);
 
             } else if (node instanceof PrefixNode) {
                 String newPrefix = ((PrefixNode) node).getMetaValue();
-                player.sendMessage(ConfigManager.get("MessagePrefixAdd").replace("%PREFIX%", newPrefix));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixAdd").replace("%PREFIX%", newPrefix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", newPrefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
                 TagManager.setTag(player, newPrefix, suffix);
 
             } else if (node instanceof SuffixNode) {
                 String newSuffix = ((SuffixNode) node).getMetaValue();
-                player.sendMessage(ConfigManager.get("MessageSuffixAdd").replace("%SUFFIX%", newSuffix));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessageSuffixAdd").replace("%SUFFIX%", newSuffix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", newSuffix));
                 TagManager.setTag(player, prefix, newSuffix);
             }
@@ -106,19 +106,19 @@ public class PlayerNodeChangeListener {
 
             if (node instanceof InheritanceNode) {
                 String groupName = ((InheritanceNode) node).getGroupName();
-                player.sendMessage(ConfigManager.get("MessageSuffixRemove").replace("%GROUPNAME%", groupName));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixRemove").replace("%GROUPNAME%", groupName));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
                 TagManager.setTag(player, prefix, suffix);
 
             } else if (node instanceof PrefixNode) {
                 String newPrefix = ((PrefixNode) node).getMetaValue();
-                player.sendMessage(ConfigManager.get("MessageSuffixRemove").replace("%PREFIX%", newPrefix));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixRemove").replace("%PREFIX%", newPrefix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", newPrefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
                 TagManager.setTag(player, newPrefix, suffix);
 
             } else if (node instanceof SuffixNode) {
                 String newSuffix = ((SuffixNode) node).getMetaValue();
-                player.sendMessage(ConfigManager.get("MessageSuffixRemove").replace("%SUFFIX%", newSuffix));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessageSuffixRemove").replace("%SUFFIX%", newSuffix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", newSuffix));
                 TagManager.setTag(player, prefix, newSuffix);
             }

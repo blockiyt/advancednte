@@ -20,16 +20,11 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
-    maven {
-        url = 'https://repo.glaremasters.me/repository/permissionsex/'
-        name = "pex-repo"
-    }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
     compileOnly 'net.luckperms:api:5.2'
-    implementation 'ca.stellardrift.permissionsex:permissionsex-core:2.0-SNAPSHOT'
 }
 
 processResources {

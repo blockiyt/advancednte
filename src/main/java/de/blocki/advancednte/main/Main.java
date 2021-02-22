@@ -15,8 +15,7 @@ public final class Main extends JavaPlugin {
     //Sets the Plugin Variable Public
     public static LuckPerms lpApi;
     //sets the prefix
-    private static String local_prefix;
-    public static String prefix = local_prefix + " ";
+    public static String prefix;
 
     @Override
     public void onEnable() {
@@ -59,7 +58,7 @@ public final class Main extends JavaPlugin {
         if(ConfigManager.get("MessageSuffixAdd") == null){ ConfigManager.set("MessagePrefixUpdate", "You were given the %SUFFIX% suffix!"); }
         if(ConfigManager.get("MessageGroupRemove") == null){ ConfigManager.set("MessageGroupRemove", "You are no longer in the %GROUPNAME% group!"); }
         if(ConfigManager.get("MessagePrefixRemove") == null){ ConfigManager.set("MessagePrefixRemove", "You no longer have the %PREFIX% prefix!"); }
-        if(ConfigManager.get("MessageSuffixRemove") == null){ ConfigManager.set("MessageSuffixRemove", "You no longer have the %SUFFIX% suffix!\""); }
+        if(ConfigManager.get("MessageSuffixRemove") == null){ ConfigManager.set("MessageSuffixRemove", "You no longer have the %SUFFIX% suffix!"); }
 
     }
 
@@ -67,6 +66,6 @@ public final class Main extends JavaPlugin {
         if(ConfigManager.get("ChatLayout") == null){ ConfigManager.set("ChatLayout", "%PREFIX%%PLAYERNAME%%SUFFIX% §7:§r %MESSAGE%"); }
         if(ConfigManager.get("DisplayNameLayout") == null){ ConfigManager.set("DisplayNameLayout", "%PREFIX%%PLAYERNAME%%SUFFIX%");}
         if(ConfigManager.get("MessagePrefix") == null){ ConfigManager.set("MessagePrefix", "§7[§6LP-NTE§7]"); }
-        local_prefix = ConfigManager.get("MessagePrefix");
+        prefix = ConfigManager.get("MessagePrefix") + " ";
     }
 }
