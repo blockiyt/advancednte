@@ -106,7 +106,7 @@ public class PlayerNodeChangeListener {
 
             if (node instanceof InheritanceNode) {
                 String groupName = ((InheritanceNode) node).getGroupName();
-                player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixRemove").replace("%GROUPNAME%", groupName));
+                player.sendMessage(Main.prefix + ConfigManager.get("MessageGroupRemove").replace("%GROUPNAME%", groupName));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
                 TagManager.setTag(player, prefix, suffix);
 
