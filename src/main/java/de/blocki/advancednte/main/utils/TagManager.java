@@ -35,15 +35,13 @@ public class TagManager {
         team.setSuffix(suffix);
         //color
         ChatColor color = null;
-        System.out.println("prefix"+prefix);
         String lastColors = ChatColor.getLastColors(prefix).replace("§", "");
-        System.out.println("lastColors="+lastColors);
         for (String colorCodeString : lastColors.split("")) {
             color = ChatColor.getByChar(colorCodeString);
             if(color != null && color.isColor()) break;
         }
         if(color == null || !color.isColor()) color = ChatColor.AQUA; //wenn keien valide farbe bei last colors gefunden wurde, haben wir Aqua als farbe
-        team.setColor(color); //tests mal!!!
+        team.setColor(color);
 
         //set player
         team.addPlayer(player);
