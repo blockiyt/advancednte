@@ -23,7 +23,7 @@ public class TagManager {
                 LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrimaryGroup()
         )).findFirst();
         //int weightInt = (lpWeight.filter(group -> group.getWeight().isPresent()).map(group -> group.getWeight().getAsInt()).orElse(0));
-        int weightInt = (lpWeight.isPresent() ? (lpWeight.get().getWeight().isPresent() ? lpWeight.get().getWeight().getAsInt() : 0) : 0);
+        int weightInt = (99-(lpWeight.isPresent() ? (lpWeight.get().getWeight().isPresent() ? lpWeight.get().getWeight().getAsInt() : 0) : 0));
 
 
         //get team
