@@ -1,5 +1,7 @@
 package de.blocki.advancednte.main;
 
+import de.blocki.advancednte.commands.nte;
+import de.blocki.advancednte.commands.nte_autocomplete;
 import de.blocki.advancednte.luckperms.listener.PlayerNodeChangeListener;
 import de.blocki.advancednte.luckperms.listener.Listeners;
 import net.luckperms.api.LuckPerms;
@@ -33,6 +35,9 @@ public final class Main extends JavaPlugin {
 
         PluginManager pm = this.getServer().getPluginManager();
         plugin = this;
+
+        getCommand("nte").setExecutor(new nte());
+        getCommand("nte").setTabCompleter(new nte_autocomplete());
 
         if(getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()){
             System.out.println("[AdvancedNTE] Das Plugin LuckPerms wurde gefunden");
