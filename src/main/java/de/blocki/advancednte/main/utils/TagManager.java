@@ -22,12 +22,17 @@ public class TagManager {
         Optional<Group> lpWeight = LuckPermsProvider.get().getGroupManager().getLoadedGroups().stream().filter(g -> g.getName().equals(
                 LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId()).getCachedData().getMetaData().getPrimaryGroup()
         )).findFirst();
-        int weightInt = (lpWeight.filter(group -> group.getWeight().isPresent()).map(group -> group.getWeight().getAsInt()).orElse(0));
+        //int weightInt = (lpWeight.filter(group -> group.getWeight().isPresent()).map(group -> group.getWeight().getAsInt()).orElse(0));
+        int weightInt = (lpWeight.isPresent() ? (lpWeight.get().getWeight().isPresent() ? lpWeight.get().getWeight().getAsInt() : 0) : 0);
+
 
         //get team
         String teamName = "000" + weightInt + player.getUniqueId().toString().split("-")[0] + ThreadLocalRandom.current().nextInt(10);
         Team team = board.getTeam(teamName);
         if(team == null) team = board.registerNewTeam(teamName);
+
+        System.out.println("weightInt = " + weightInt);
+        System.out.println("player = " + player);
 
         //prefix
         team.setPrefix(prefix);
@@ -49,3 +54,4 @@ public class TagManager {
     }
 
 }
+
