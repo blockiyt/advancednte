@@ -45,7 +45,7 @@ public class TagManager {
             color = ChatColor.getByChar(colorCodeString);
             if(color != null && color.isColor()) break;
         }
-        if(color == null || !color.isColor()) color = ChatColor.AQUA; //wenn keien valide farbe bei last colors gefunden wurde, haben wir Aqua als farbe
+        if(color == null || !color.isColor()) color = ChatColor.GRAY; //wenn keien valide farbe bei last colors gefunden wurde, haben wir grey als farbe
         team.setColor(color);
 
         //set player
