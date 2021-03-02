@@ -2,4 +2,5 @@ name: AdvancedNTE
 version: @version@
 main: de.blocki.advancednte.main.Main
 authors: [ blocki ]
-description: NameTagEdit Plugin for Minecraft Version 1.8
+description: NameTagEdit Plugin for Minecraft Version 1.8-1.16
+api-version: 1.16
