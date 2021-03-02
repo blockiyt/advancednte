@@ -8,8 +8,11 @@ import de.blocki.advancednte.luckperms.listener.Listeners;
 import de.blocki.advancednte.luckperms.controller.LPController;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -24,6 +27,12 @@ public final class Main extends JavaPlugin {
     public static String prefix;
 
     public static boolean is16;
+    public static boolean isLuckPerms;
+
+    //Vault Stuff
+    public static boolean isVault;
+    public static Chat chat = null;
+    private static Permission perms = null;
 
     @Override
     public void onEnable() {
@@ -75,7 +84,36 @@ public final class Main extends JavaPlugin {
                 pm.registerEvents(new PlayerVanish(), this);
             }
         }catch (NullPointerException ignored){ }
+        try {
+            if (getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
+                System.out.println("[AdvancedNTE] Das Plugin Vault wurde gefunden");
+                setupChat();
+                setupPermissions();
+            }
+        }catch (NullPointerException ignored){ }
+
         setDefaultConfig();
+
+    }
+
+    private boolean setupChat() {
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+        return chat != null;
+    }
+
+    public static Chat getChat() {
+        return chat;
+    }
+
+    public static Permission getPermissions() {
+        return perms;
+    }
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
     }
 
     private void setDefaultConfigLuckperms() {
