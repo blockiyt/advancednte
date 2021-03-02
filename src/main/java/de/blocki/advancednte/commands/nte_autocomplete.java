@@ -1,13 +1,11 @@
 package de.blocki.advancednte.commands;
 
-import net.luckperms.api.model.group.Group;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class nte_autocomplete implements TabCompleter {
 
@@ -18,6 +16,15 @@ public class nte_autocomplete implements TabCompleter {
             mainCMD.add("reload");
         }
 
+       List<String> result = new ArrayList<String>();
+       if(args.length == 1){
+           for(String a : mainCMD){
+               if(a.toLowerCase().startsWith(args[0].toLowerCase())){
+                   result.add(a);
+               }
+           }
+           return result;
+       }
         return null;
     }
 

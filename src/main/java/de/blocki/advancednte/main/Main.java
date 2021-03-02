@@ -4,11 +4,14 @@ import de.blocki.advancednte.commands.nte;
 import de.blocki.advancednte.commands.nte_autocomplete;
 import de.blocki.advancednte.luckperms.listener.PlayerNodeChangeListener;
 import de.blocki.advancednte.luckperms.listener.Listeners;
+import de.blocki.advancednte.luckperms.controller.LPController;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
@@ -18,6 +21,8 @@ public final class Main extends JavaPlugin {
     public static LuckPerms lpApi;
     //sets the prefix
     public static String prefix;
+
+    public static boolean is16;
 
     @Override
     public void onEnable() {
@@ -33,28 +38,37 @@ public final class Main extends JavaPlugin {
         System.out.println("AdvancedNTE by blocki");
         System.out.println("");
 
+        LPController lpc = new LPController();
         PluginManager pm = this.getServer().getPluginManager();
         plugin = this;
 
-        getCommand("nte").setExecutor(new nte());
-        getCommand("nte").setTabCompleter(new nte_autocomplete());
+        String version_sb = getServer().getClass().getPackage().getName();
+        String version = version_sb.substring(version_sb.lastIndexOf('.') + 1);
 
-        if(getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()){
-            System.out.println("[AdvancedNTE] Das Plugin LuckPerms wurde gefunden");
-            LuckPerms api = LuckPermsProvider.get();
-            lpApi = api;
-            pm.registerEvents(new Listeners(), this);
-            new PlayerNodeChangeListener(this, api).register();
-            //new GroupPrefixChangedListener(this, api).register();
-            setDefaultConfigLuckperms();
+        if(version.startsWith("v1_16")){
+            getLogger().log(Level.INFO, "Spigot 1.16 found");
+            is16 = true;
         }
 
-        setDefaultConfig();
-    }
+        //getCommand("nte").setExecutor(new nte());
+        //getCommand("nte").setTabCompleter(new nte_autocomplete());
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+        try {
+            if (getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()) {
+                System.out.println("[AdvancedNTE] Das Plugin LuckPerms wurde gefunden");
+                LuckPerms api = LuckPermsProvider.get();
+                lpApi = api;
+                pm.registerEvents(new Listeners(), this);
+                new PlayerNodeChangeListener(this, api).register();
+                //new GroupPrefixChangedListener(this, api).register();
+                setDefaultConfigLuckperms();
+                lpc.reloadAllPlayers();
+            }
+        }catch (NullPointerException e){
+            getLogger().log(Level.WARNING, "[AdvancedNTE] Es konnte kein unterstütztes Permission Plugin (LuckPerms) gefunden werden. Deaktivieren...");
+            this.getPluginLoader().disablePlugin(this);
+        }
+        setDefaultConfig();
     }
 
     private void setDefaultConfigLuckperms() {
@@ -64,7 +78,7 @@ public final class Main extends JavaPlugin {
         if(ConfigManager.get("MessageGroupRemove") == null){ ConfigManager.set("MessageGroupRemove", "You are no longer in the %GROUPNAME% group!"); }
         if(ConfigManager.get("MessagePrefixRemove") == null){ ConfigManager.set("MessagePrefixRemove", "You no longer have the %PREFIX% prefix!"); }
         if(ConfigManager.get("MessageSuffixRemove") == null){ ConfigManager.set("MessageSuffixRemove", "You no longer have the %SUFFIX% suffix!"); }
-
+        if(ConfigManager.get("MessageReloadConfirm") == null){ ConfigManager.set("MessageReloadConfirm", "The Plugin reloaded sucessfully.!"); }
     }
 
     private void setDefaultConfig(){

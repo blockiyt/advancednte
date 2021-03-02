@@ -2,7 +2,8 @@ package de.blocki.advancednte.luckperms.listener;
 
 import de.blocki.advancednte.main.ConfigManager;
 import de.blocki.advancednte.main.Main;
-import de.blocki.advancednte.main.utils.TagManager;
+import de.blocki.advancednte.luckperms.controller.LPController;
+import de.blocki.advancednte.main.utils.TagManager2;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.event.EventBus;
 import net.luckperms.api.event.node.NodeAddEvent;
@@ -12,7 +13,6 @@ import net.luckperms.api.node.Node;
 import net.luckperms.api.node.types.InheritanceNode;
 import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.node.types.SuffixNode;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class PlayerNodeChangeListener {
@@ -35,6 +35,7 @@ public class PlayerNodeChangeListener {
             return;
         }
 
+        LPController lpc = new LPController();
         User target = (User) e.getTarget();
         Node node = e.getNode();
 
@@ -46,7 +47,7 @@ public class PlayerNodeChangeListener {
             }
 
             //get prefix
-            String prefix = "";
+            /*String prefix = "";
             if(target.getCachedData().getMetaData().getPrefixes().size() > 0){
                 prefix = ChatColor.translateAlternateColorCodes('&', target.getCachedData().getMetaData().getPrefix());
             }
@@ -54,25 +55,28 @@ public class PlayerNodeChangeListener {
             String suffix = "";
             if(target.getCachedData().getMetaData().getSuffixes().size() > 0){
                 suffix = ChatColor.translateAlternateColorCodes('&', target.getCachedData().getMetaData().getSuffix());
-            }
+            }*/
+
+            String prefix = lpc.getLpPrefix(player);
+            String suffix = lpc.getLpSuffix(player);
 
             if (node instanceof InheritanceNode) {
                 String groupName = ((InheritanceNode) node).getGroupName();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessageGroupAdd").replace("%GROUPNAME%", groupName));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
-                TagManager.setTag(player, prefix, suffix);
+                TagManager2.setTag(player, prefix, suffix);
 
             } else if (node instanceof PrefixNode) {
                 String newPrefix = ((PrefixNode) node).getMetaValue();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixAdd").replace("%PREFIX%", newPrefix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", newPrefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
-                TagManager.setTag(player, newPrefix, suffix);
+                TagManager2.setTag(player, newPrefix, suffix);
 
             } else if (node instanceof SuffixNode) {
                 String newSuffix = ((SuffixNode) node).getMetaValue();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessageSuffixAdd").replace("%SUFFIX%", newSuffix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", newSuffix));
-                TagManager.setTag(player, prefix, newSuffix);
+                TagManager2.setTag(player, prefix, newSuffix);
             }
 
         });
@@ -83,6 +87,7 @@ public class PlayerNodeChangeListener {
             return;
         }
 
+        LPController lpc = new LPController();
         User target = (User) e.getTarget();
         Node node = e.getNode();
 
@@ -93,34 +98,26 @@ public class PlayerNodeChangeListener {
                 return; // Player not online.
             }
 
-            //get prefix
-            String prefix = "";
-            if(target.getCachedData().getMetaData().getPrefixes().size() > 0){
-                prefix = ChatColor.translateAlternateColorCodes('&', target.getCachedData().getMetaData().getPrefix());
-            }
-            //get suffix
-            String suffix = "";
-            if(target.getCachedData().getMetaData().getSuffixes().size() > 0){
-                suffix = ChatColor.translateAlternateColorCodes('&', target.getCachedData().getMetaData().getSuffix());
-            }
+            String prefix = lpc.getLpPrefix(player);
+            String suffix = lpc.getLpSuffix(player);
 
             if (node instanceof InheritanceNode) {
                 String groupName = ((InheritanceNode) node).getGroupName();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessageGroupRemove").replace("%GROUPNAME%", groupName));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
-                TagManager.setTag(player, prefix, suffix);
+                TagManager2.setTag(player, prefix, suffix);
 
             } else if (node instanceof PrefixNode) {
                 String newPrefix = ((PrefixNode) node).getMetaValue();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessagePrefixRemove").replace("%PREFIX%", newPrefix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", newPrefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", suffix));
-                TagManager.setTag(player, newPrefix, suffix);
+                TagManager2.setTag(player, newPrefix, suffix);
 
             } else if (node instanceof SuffixNode) {
                 String newSuffix = ((SuffixNode) node).getMetaValue();
                 player.sendMessage(Main.prefix + ConfigManager.get("MessageSuffixRemove").replace("%SUFFIX%", newSuffix));
                 player.setDisplayName(ConfigManager.get("DisplayNameLayout").replace("%PREFIX%", prefix).replace("%PLAYERNAME%", target.getUsername()).replace("%SUFFIX%", newSuffix));
-                TagManager.setTag(player, prefix, newSuffix);
+                TagManager2.setTag(player, prefix, newSuffix);
             }
         });
     }
