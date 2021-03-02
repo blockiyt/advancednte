@@ -2,6 +2,7 @@ package de.blocki.advancednte.main;
 
 import de.blocki.advancednte.commands.nte;
 import de.blocki.advancednte.commands.nte_autocomplete;
+import de.blocki.advancednte.listener.PlayerVanish;
 import de.blocki.advancednte.luckperms.listener.PlayerNodeChangeListener;
 import de.blocki.advancednte.luckperms.listener.Listeners;
 import de.blocki.advancednte.luckperms.controller.LPController;
@@ -68,6 +69,12 @@ public final class Main extends JavaPlugin {
             getLogger().log(Level.WARNING, "[AdvancedNTE] Es konnte kein unterstütztes Permission Plugin (LuckPerms) gefunden werden. Deaktivieren...");
             this.getPluginLoader().disablePlugin(this);
         }
+        try {
+            if (getServer().getPluginManager().getPlugin("EssentialsX").isEnabled()) {
+                System.out.println("[AdvancedNTE] Das Plugin EssentialsX wurde gefunden");
+                pm.registerEvents(new PlayerVanish(), this);
+            }
+        }catch (NullPointerException ignored){ }
         setDefaultConfig();
     }
 

@@ -17,8 +17,16 @@ repositories {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
     maven {
+        name 'papermc'
+        url 'https://papermc.io/repo/repository/maven-public/'
+    }
+    maven {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        name = 'essentialsx'
+        url = 'https://ci.ender.zone/plugin/repository/everything/'
     }
 }
 
@@ -26,6 +34,8 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     compileOnly 'net.luckperms:api:5.2'
+    compileOnly 'net.ess3:EssentialsX:2.18.2'
+    compile "io.papermc:paperlib:1.0.6"
 }
 
 processResources {
