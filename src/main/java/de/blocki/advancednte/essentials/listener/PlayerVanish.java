@@ -1,4 +1,4 @@
-package de.blocki.advancednte.listener;
+package de.blocki.advancednte.essentials.listener;
 
 import de.blocki.advancednte.main.Main;
 import net.ess3.api.IUser;

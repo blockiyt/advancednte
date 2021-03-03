@@ -28,10 +28,6 @@ repositories {
         name = 'essentialsx'
         url = 'https://ci.ender.zone/plugin/repository/everything/'
     }
-    maven {
-        name = 'vault-repo'
-        url = 'https://jitpack.io'
-    }
 }
 
 dependencies {
@@ -40,7 +36,6 @@ dependencies {
     compileOnly 'net.luckperms:api:5.2'
     compileOnly 'net.ess3:EssentialsX:2.18.2'
     compile "io.papermc:paperlib:1.0.6"
-    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
 }
 
 processResources {

@@ -58,30 +58,6 @@ public class TagManager2 {
             team.addPlayer(player);
             player.setScoreboard(board);
         }
-
-        if(Main.isVault){
-            //get board
-            Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
-
-            //000+ whight + uuid
-            String primary_group = Main.getPermissions().getPrimaryGroup(player);
-            String gp = Main.getChat().getGroupPrefix(player.getWorld(), primary_group);
-            String gs = Main.getChat().getGroupSuffix(player.getWorld(), primary_group);
-
-            String teamName = "";
-
-            Team team = board.getTeam(teamName);
-            if (team == null) team = board.registerNewTeam(teamName);
-
-            //prefix
-            team.setPrefix(prefix);
-            //suffix
-            team.setSuffix(suffix);
-
-            //set player
-            team.addPlayer(player);
-            player.setScoreboard(board);
-        }
     }
 
 }
