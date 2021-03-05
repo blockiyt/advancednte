@@ -1,5 +1,5 @@
 # AdvancedNTE
-AdvancedNTE is a NameTag Plugin for Minecraft Java Version 1.8 with support for [LuckPerms](https://luckperms.net)
+AdvancedNTE is a NameTag Plugin for Minecraft Java Version 1.8-1.16 with support for [LuckPerms](https://luckperms.net)
 
 # Features
 
@@ -9,7 +9,7 @@ AdvancedNTE is a NameTag Plugin for Minecraft Java Version 1.8 with support for 
 
 
 
-It's powered by the LuckPerms API v5.2 and Spigot API v1.8.8
+It's powered by the LuckPerms API v5.2 and Spigot API
 
 
 ### Installation
