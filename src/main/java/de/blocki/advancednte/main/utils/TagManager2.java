@@ -4,13 +4,10 @@ import de.blocki.advancednte.luckperms.controller.LPController;
 import de.blocki.advancednte.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import java.util.Arrays;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TagManager2 {
@@ -51,9 +48,7 @@ public class TagManager2 {
                 if (color == null || !color.isColor())
                     color = ChatColor.GRAY; //wenn keien valide farbe bei last colors gefunden wurde, haben wir grey als farbe
                 team.setColor(color);
-            } else {
-                return;
-            }
+            } else { return; }
             //set player
             team.addPlayer(player);
             player.setScoreboard(board);

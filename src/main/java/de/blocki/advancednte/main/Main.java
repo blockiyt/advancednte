@@ -55,7 +55,7 @@ public final class Main extends JavaPlugin {
         try {
             if (getServer().getPluginManager().getPlugin("LuckPerms").isEnabled()) {
                 LPController lpc = new LPController();
-                System.out.println("[AdvancedNTE] Das Plugin LuckPerms wurde gefunden");
+                System.out.println("[AdvancedNTE] The plugin LuckPerms was found.");
                 LuckPerms api = LuckPermsProvider.get();
                 lpApi = api;
                 pm.registerEvents(new Listeners(), this);
@@ -63,14 +63,15 @@ public final class Main extends JavaPlugin {
                 //new GroupPrefixChangedListener(this, api).register();
                 setDefaultConfigLuckperms();
                 lpc.reloadAllPlayers();
+                isLuckPerms = true;
             }
         }catch (NullPointerException e){
-            getLogger().log(Level.WARNING, "[AdvancedNTE] Es konnte kein unterstütztes Permission Plugin (LuckPerms) gefunden werden. Deaktivieren...");
+            getLogger().log(Level.WARNING, "[AdvancedNTE] It could not be found a supported permission Plugin (LuckPerms). Deactivating...");
             this.getPluginLoader().disablePlugin(this);
         }
         try {
             if (getServer().getPluginManager().getPlugin("EssentialsX").isEnabled()) {
-                System.out.println("[AdvancedNTE] Das Plugin EssentialsX wurde gefunden");
+                System.out.println("[AdvancedNTE] The plugin EssentialsX was found.");
                 pm.registerEvents(new PlayerVanish(), this);
             }
         }catch (NullPointerException ignored){ }

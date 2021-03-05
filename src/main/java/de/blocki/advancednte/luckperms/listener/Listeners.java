@@ -4,6 +4,7 @@ import de.blocki.advancednte.main.ConfigManager;
 import de.blocki.advancednte.luckperms.controller.LPController;
 import de.blocki.advancednte.main.utils.TagManager2;
 import org.bukkit.ChatColor;
+import org.bukkit.command.defaults.ReloadCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
