@@ -23,7 +23,6 @@ Restart or Reload the Server an you are done!
 ### Todos
 
  - update prefix when group prefix change for LuckPerms
- - add support for PermissionsEx
 
 
 License
