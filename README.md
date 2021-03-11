@@ -23,6 +23,7 @@ Restart or Reload the Server an you are done!
 ### Todos
 
  - update prefix when group prefix change for LuckPerms
+ - remove prefix on player leave and plugin stop
 
 
 License
